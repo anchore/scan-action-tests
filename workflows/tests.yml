@@ -24,20 +24,22 @@ jobs:
       with:
         image: "python:3.8"
         debug: true
+        fail-build: true
 
   image-severity:
-    runsv-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
 
-    # Always testing the main branch
+    # Do not fail because `fail-build` is unset (defaults to false)
     - uses: anchore/scan-action@main
       with:
         image: "python:3.8"
         debug: true
+        severity-cutoff: Medium
 
   image-severity-fail-build:
-    runsv-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
 
@@ -58,3 +60,40 @@ jobs:
         path: "tests/python"
         debug: true
         severity-cutoff: "Negligible"
+
+  directory-fail-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    # Always testing the main branch
+    - uses: anchore/scan-action@main
+      with:
+        path: "tests/python"
+        debug: true
+        fail-build: true
+
+  directory-severity:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    # Do not fail because `fail-build` is unset (defaults to false)
+    - uses: anchore/scan-action@main
+      with:
+        path: "tests/python"
+        debug: true
+        severity-cutoff: Medium
+
+  directory-severity-fail-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    # Always testing the main branch
+    - uses: anchore/scan-action@main
+      with:
+        path: "tests/python"
+        debug: true
+        fail-build: true
+        severity-cutoff: Medium
