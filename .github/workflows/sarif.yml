@@ -15,7 +15,7 @@ jobs:
     - name: Run the local Scan Action with SARIF generation enabled
       uses: anchore/scan-action@main
       with:
-        image: "debian:8"
+        image: "ubuntu:latest"
         debug: true
         acs-report-enable: true
 
