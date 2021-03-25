@@ -37,10 +37,11 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Run the local Scan Action with SARIF generation enabled
-      uses: anchore/scan-action@main
+      uses: anchore/scan-action@next
       with:
         path: "tests/python"
         debug: true
+        fail-build: false
         acs-report-enable: true
 
     - name: Inspect Generated SARIF
