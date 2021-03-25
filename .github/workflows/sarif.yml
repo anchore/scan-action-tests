@@ -1,6 +1,8 @@
 name: "[SARIF] Run Scan Action"
 
 on:
+  # allow running on-demand
+  workflow_dispatch:
   schedule:
     # Nightly
     - cron: "0 0 * * *"
