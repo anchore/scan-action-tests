@@ -19,6 +19,7 @@ jobs:
       with:
         image: "ubuntu:latest"
         debug: true
+        fail-build: false
         acs-report-enable: true
 
     - name: Inspect Generated SARIF
